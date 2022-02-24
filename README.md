@@ -1,6 +1,13 @@
 # BootEA
 Source code and datasets for IJCAI-2018 paper "_[Bootstrapping Entity Alignment with Knowledge Graph Embedding](https://www.ijcai.org/proceedings/2018/0611.pdf)_".
 
+## TODO
+
+- [ ] 数据说明
+- [ ] run
+- [ ] 补充注释
+- [ ] demo
+
 ## Dataset
 We use two datasets, namely DBP15K and DWY100K. DBP15K can be found [here](https://github.com/nju-websoft/JAPE) while DWY100K is as follows.
 ### Id files of DWY100K
