@@ -9,60 +9,68 @@ Source code and datasets for IJCAI-2018 paper "_[Bootstrapping Entity Alignment 
 - [ ] demo
 
 ## Dataset
-We use two datasets, namely DBP15K and DWY100K. DBP15K can be found [here](https://github.com/nju-websoft/JAPE) while DWY100K is as follows.
+
+我们使用了两个数据集，DBP15K 和 DWY100K。DBP15K 可以[在此获取](https://github.com/nju-websoft/JAPE)。DWY100K 如下所示。
+
 ### Id files of DWY100K
-Folder "dataset/DWY100K/" contains the id files of DWY100K. 
 
-The subfolder "mapping/0_3" contains the id files used in BootEA and MTransE while the subfolder "sharing/0_3" is for JAPE and IPTransE. The two datasets use 30% reference entity alignment as seeds. Id files in "sharing/0_3" are generated following the idea of parameter sharing that lets the two aligned enitites in seed alignment share the same id, while "mapping/0_3" does not.
+文件夹 `dataset/DWY100K/` 包含 DWY100K 的 id files
 
-The subfolder "mapping/0_3" inculdes the following files:
-* ent_ids_1: entity ids in the source KG;
-* ent_ids_2: entity ids in the target KG;
-* ref_ent_ids: entity alignment for testing, list of pairs like (e_s \t e_t);
-* sup_ent_ids: seed entity alignment (training data);
-* rel_ids_1: relation ids in the source KG;
-* rel_ids_2: relation ids in the target KG;
-* triples_1: relation triples in the source KG;
-* triples_2: relation triples in the target KG;
+子文件夹 `mapping/0_3` 包含 BootEA 和 MTransE 的 id files。
+子文件夹 `sharing/0_3` 包含 JAPE 和 IPTransE 的 id files。
+两个数据集使用 **30%** 作为种子对齐。
 
-The subfolder "sharing/0_3" inculdes the following additional files:
-* attr_ids_1: attribute ids in the source KG;
-* attr_ids_2: attribute ids in the target KG;
-* attr_range_type_1: attribute ranges in the source KG, list of pairs like (attribute id \t range code);
-* attr_range_type_2: attribute ranges in the target KG;
-* ent_attrs_1: entity attributes in the source KG; 
-* ent_attrs_2: entity attributes in the target KG; 
-* ref_ents: seed entity alignment denoted by URIs (training data);
+`sharing/0_3` 使用 parameter sharing 方法让对齐实体共享 id。
+`mapping/0_3` 则没有这样做。
 
-### Raw data of DWY100K
-File "dataset/DWY100K_raw_data.zip" is the raw data of DWY100K, where each entity, relation or attribute is represented by a URI. Each dataset has the following files:
+`mapping/0_3` 包含以下文件
+* ent_ids_1: 来源 KG 的 entity ids;
+* ent_ids_2: 目标 KG 的 entity ids;
+* ref_ent_ids: 用于测试的对齐对，如 (e_s \t e_t);
+* sup_ent_ids: 种子对齐 (训练数据);
+* rel_ids_1: 来源 KG 的 relation ids;
+* rel_ids_2: 目标 KG 的 relation ids;
+* triples_1: 来源 KG 的 relation triples（三元组在）;
+* triples_2: 目标 KG 的 relation triples（三元组在）;
 
-* ent_links: all the entity links without traning/test splits;
-* triples_1: relation triples in the source KG, list of triples like (h \t r \t t);
-* triples_2: relation triples in the target KG;
-* attr_triples_1: attribute triples in the source KG;
-* attr_triples_2: attribute triples in the target KG;
-* uri_attr_range_type_1: attribute ranges in the source KG, list of pairs like (attribute uri \t range code);
-* uri_attr_range_type_2: attribute ranges in the target KG;
-* attrs_1: entity attributes in the source KG; 
-* attrs_2: entity attributes in the target KG; 
+`sharing/0_3` 额外包含以下附加文件
+* attr_ids_1: 来源 KG 的 attribute ids;
+* attr_ids_2: 目标 KG 的 attribute ids;
+* attr_range_type_1: 来源 KG 的属性范围（attribute ranges）, 如 (attribute id \t range code);
+* attr_range_type_2: 目标 KG 的属性范围（attribute ranges）;
+* ent_attrs_1: 来源 KG 的实体属性entity attributes; 
+* ent_attrs_2: 目标 KG 的实体属性entity attributes; 
+* ref_ents: 用 URIS 表示的种子对齐(训练数据);
 
-## Code
-Folder "code" contains all codes of BootEA, in which:
-* "AlignE.py" is the implementation of AlignE;
-* "BootEA.py" is the implementation of BootEA;
-* "param.py" is the config file.
+### DWY100K 的原始数据
+`dataset/DWY100K_raw_data.zip` 是 DWY100K 的原始数据, 其中每个实体、关系或属性都用URI 表示。每个数据集包含以下文件:
 
-### Dependencies
+* ent_links: 所有实体连接（不区分训练/测试集）;
+* triples_1: 来源 KG 的关系三元组，如 (h \t r \t t);
+* triples_2: 目标 KG 的关系三元组;
+* attr_triples_1: 来源 KG 的属性三元组;
+* attr_triples_2: 目标 KG 的属性三元组;
+* uri_attr_range_type_1: 来源 KG 的属性范围（attribute ranges）, 如 (attribute uri \t range code);
+* uri_attr_range_type_2: 来源 KG 的属性范围（attribute ranges）;
+* attrs_1: 来源 KG 的实体属性; 
+* attrs_2: 目标 KG 的实体属性; 
+
+## 代码
+`code` 文件夹包含BootEA的所有代码, in which:
+* `AlignE.py` 实现了AlignE（无迭代）;
+* `BootEA.py` 实现了BootEA;
+* `param.py` 配置文件.
+
+### 依赖（TODO: 补充版本）
 * Python 3
 * Tensorflow 1.x 
 * Scipy
 * Numpy
 * Graph-tool or igraph or NetworkX
 
-If you fail to install Graph-tool, we suggest you to set "self.heuristic = False" in param.py, which allows BootEA to run using igraph rather than Graph-tool. If you have trouble installing igraph, you can use NetworkX by modifying the code of line 186-189 in train_bp.py and replacing "mwgm_graph_tool" and "mwgm_igraph" with "mwgm_networkx". Note that, igraph and NetworkX are much slower than Graph-tool!
+如果你安装 `Graph-tool` 失败， 我们建议你设置 `self.heuristic = False` 在 `param.py` 中，这允许BootEA在运行时使用 `igraph` 而不是 `Graph-tool`。如果你安装`igraph`遇到了麻烦，你可以使用 `NetworkX` 并修改 `train_bp.py` 的 **186-189** 行（使用mwgm_networkx替换mwgm_graph_tool和 mwgm_igraph）。请注意igraph 和 NetworkX 比Graph-tool慢得多。
 
-> If you have any difficulty or question in running code and reproducing experiment results, please email to zqsun.nju@gmail.com and whu@nju.edu.cn.
+> 如果你运行和复现实验结果时遇到了任何困难，请发email给 zqsun.nju@gmail.com 和 whu@nju.edu.cn
 
 ## Citation
 If you use this model or code, please cite it as follows:      
